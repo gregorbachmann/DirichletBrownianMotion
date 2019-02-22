@@ -1,4 +1,4 @@
-from BrownianMotion2D import BrownianMotion2D
+from src.core.BrownianMotion2D import BrownianMotion2D
 
 
 class BMCloud:
@@ -13,17 +13,12 @@ class BMCloud:
 
         self.bms = []
 
-    def create_bms(self):
-        for _ in range(self.num_bm):
-            bm = BrownianMotion2D(self.b_0, self.dt, self.boundary)
-            print(self.b_0)
-            self.bms.append(bm)
-
     def run_all_bms(self):
-        self.create_bms()
-        for bm in self.bms:
+        self.hitting_values = []
+        b_0 = self.b_0.copy()
+        for _ in range(self.num_bm):
+            bm = BrownianMotion2D(b_0, b_0, self.dt, self.boundary)
             bm.run_bm()
-            print(bm.hitting_value)
             self.hitting_values.append(bm.hitting_value)
 
     def get_mean(self):

@@ -5,10 +5,11 @@ class BrownianMotion2D:
 
     def __init__(self,
                  b_0,
+                 current,
                  dt,
                  boundary):
         self.b_0 = b_0
-        self.current = b_0
+        self.current = current
         self.dt = dt
         self.t = 0
         self.boundary = boundary

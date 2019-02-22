@@ -1,5 +1,5 @@
 import numpy as np
-from BrownianMotionCloud import BMCloud
+from src.core.BrownianMotionCloud import BMCloud
 from mpl_toolkits.mplot3d import Axes3D
 
 
@@ -14,8 +14,9 @@ class Dirichlet:
         self.values = np.zeros(shape=num_bm)
 
     def get_values(self):
-        for i in range(len(self.grid[:, 0])):
-            cloud = BMCloud(b_0=self.grid[:, i], dt=self.dt, boundary=self.boundary, num_bm=self.num_bm, f=self.f)
+        for i in range(len(self.grid[0, :])):
+            grid_val = self.grid[:, i].copy()
+            cloud = BMCloud(b_0=grid_val, dt=self.dt, boundary=self.boundary, num_bm=self.num_bm, f=self.f)
             self.values[i] = cloud.get_mean()
 
     def plot(self):
